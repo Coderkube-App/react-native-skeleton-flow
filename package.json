@@ -35,5 +35,13 @@
     "react": "18.2.0",
     "react-native": "0.74.1",
     "typescript": "^5.4.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coderkube-App/react-native-skeleton-flow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Coderkube-App/react-native-skeleton-flow/issues"
+  },
+  "homepage": "https://github.com/Coderkube-App/react-native-skeleton-flow#readme"
 }
