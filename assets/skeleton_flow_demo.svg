@@ -1,0 +1,257 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <style type="text/css">
+      /*<![CDATA[*/
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+      .bg { fill: #0b0f19; }
+      .phone-body { fill: #111827; stroke: #374151; stroke-width: 2; }
+      .phone-screen { fill: #f8fafc; }
+      .notch-bg { fill: #111827; }
+
+      /* Typography */
+      .title-font { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; fill: #f8fafc; }
+      .desc-font { font-family: 'Inter', sans-serif; font-size: 13px; fill: #94a3b8; }
+      .small-font { font-family: 'Inter', sans-serif; font-size: 10px; fill: #475569; font-weight: 600; }
+      .label-font { font-family: 'Inter', sans-serif; font-size: 10px; fill: #1e293b; font-weight: 600; }
+      .feature-head { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: #e2e8f0; }
+      .feature-body { font-family: 'Inter', sans-serif; font-size: 11px; fill: #64748b; }
+      .badge-font { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+      .code-font { font-family: 'Fira Code', 'Consolas', monospace; font-size: 11px; }
+
+      .header-bar { fill: #6366f1; }
+      .header-text { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; fill: #ffffff; }
+
+      /* Shimmer base bone style */
+      .bone-base { fill: #e2e8f0; }
+
+      /* ══════ TIMELINE ANIMATION ══════
+         0% - 40%   : SKELETON SHIMMER STATE (Loading)
+         40% - 45%  : Transition (Skeleton fades out, Real Content fades in)
+         45% - 85%  : CONTENT STATE (Loaded profile)
+         85% - 90%  : Transition (Real Content fades out, Skeleton fades in)
+         90% - 100% : Skeleton Shimmer hold, loops
+      ═════════════════════════════════ */
+
+      /* Shimmer sweep animation */
+      @keyframes shimmerSweep {
+        0% { transform: translateX(-200px) skewX(-20deg); }
+        100% { transform: translateX(300px) skewX(-20deg); }
+      }
+      .shimmer-bar {
+        animation: shimmerSweep 1.5s infinite linear;
+      }
+
+      /* Skeleton State Visibility */
+      @keyframes skeletonOpacity {
+        0%, 40% { opacity: 1; pointer-events: auto; }
+        45%, 85% { opacity: 0; pointer-events: none; }
+        90%, 100% { opacity: 1; pointer-events: auto; }
+      }
+      .skeleton-layer {
+        animation: skeletonOpacity 8s ease-in-out infinite;
+      }
+
+      /* Loaded Content State Visibility */
+      @keyframes contentOpacity {
+        0%, 40% { opacity: 0; pointer-events: none; }
+        45%, 85% { opacity: 1; pointer-events: auto; }
+        90%, 100% { opacity: 0; pointer-events: none; }
+      }
+      .content-layer {
+        animation: contentOpacity 8s ease-in-out infinite;
+      }
+
+      /* Real Loaded Profile text styles */
+      .profile-name { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; fill: #1e293b; }
+      .profile-bio { font-family: 'Inter', sans-serif; font-size: 9px; fill: #64748b; font-weight: 500; }
+      .profile-body-text { font-family: 'Inter', sans-serif; font-size: 10px; fill: #334155; font-weight: 400; }
+      .tag-bg { fill: #e0e7ff; stroke: #c7d2fe; stroke-width: 0.5; }
+      .tag-text { font-family: 'Inter', sans-serif; font-size: 8px; fill: #4f46e5; font-weight: 700; }
+
+      /* Glow Effects */
+      .glow-purple { filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.45)); }
+      .glow-green { filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.3)); }
+      .glow-indigo { filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3)); }
+
+      @keyframes fpulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      .fp { animation: fpulse 3s ease-in-out infinite; }
+      /*]]>*/
+    </style>
+
+    <!-- Clip path matching the exact skeleton layout shapes -->
+    <clipPath id="skeleton-shapes">
+      <!-- Avatar Circle -->
+      <circle cx="58" cy="113" r="24" />
+      <!-- Name Bar -->
+      <rect x="94" y="98" width="105" height="10" rx="5" ry="5" />
+      <!-- Bio Bar -->
+      <rect x="94" y="116" width="75" height="8" rx="4" ry="4" />
+      <!-- Main Content Image Card -->
+      <rect x="34" y="152" width="182" height="110" rx="8" ry="8" />
+      <!-- Description line 1 -->
+      <rect x="34" y="278" width="170" height="8" rx="4" ry="4" />
+      <!-- Description line 2 -->
+      <rect x="34" y="292" width="120" height="8" rx="4" ry="4" />
+    </clipPath>
+
+    <!-- Shimmer linear gradient -->
+    <linearGradient id="shimmer-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e2e8f0" stop-opacity="0" />
+      <stop offset="35%" stop-color="#e2e8f0" stop-opacity="0" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.85" />
+      <stop offset="65%" stop-color="#e2e8f0" stop-opacity="0" />
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0" />
+    </linearGradient>
+
+    <filter id="shadow1" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.1" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="800" height="500" rx="16" ry="16" />
+
+  <!-- Title -->
+  <g transform="translate(30, 40)">
+    <text class="title-font">🚀 react-native-skeleton-flow</text>
+    <text class="desc-font" y="24">Preserves exact layout structures and generates GPU-accelerated shimmering skeleton views</text>
+  </g>
+
+  <!-- ════════════ PHONE MOCKUP ════════════ -->
+  <g transform="translate(55, 80)">
+    <!-- Phone body -->
+    <rect class="phone-body" width="250" height="400" rx="28" ry="28" />
+    <!-- Screen -->
+    <rect class="phone-screen" x="10" y="10" width="230" height="380" rx="20" ry="20" />
+    <!-- Notch -->
+    <rect class="notch-bg" x="80" y="10" width="90" height="24" rx="0" ry="0" />
+    <rect class="notch-bg" x="80" y="10" width="90" height="18" rx="0" ry="10" />
+    <!-- Status bar -->
+    <text class="small-font" x="24" y="28">9:41</text>
+    <text class="small-font" x="202" y="28">100%</text>
+
+    <!-- App header -->
+    <rect class="header-bar" x="10" y="34" width="230" height="42" />
+    <text class="header-text" x="24" y="60">Explore</text>
+
+    <!-- Screen Content Base View -->
+    <rect fill="#ffffff" x="10" y="76" width="230" height="314" rx="0" ry="20" />
+
+    <!-- ════════ LAYER 1: SHIMMERING SKELETON ════════ -->
+    <g class="skeleton-layer">
+      <!-- 1. Background static bones -->
+      <g class="bone-base">
+        <!-- Avatar -->
+        <circle cx="58" cy="113" r="24" />
+        <!-- Name -->
+        <rect x="94" y="98" width="105" height="10" rx="5" ry="5" />
+        <!-- Bio -->
+        <rect x="94" y="116" width="75" height="8" rx="4" ry="4" />
+        <!-- Content Image Card -->
+        <rect x="34" y="152" width="182" height="110" rx="8" ry="8" />
+        <!-- Description line 1 -->
+        <rect x="34" y="278" width="170" height="8" rx="4" ry="4" />
+        <!-- Description line 2 -->
+        <rect x="34" y="292" width="120" height="8" rx="4" ry="4" />
+      </g>
+
+      <!-- 2. Animated hardware-accelerated shimmer overlay -->
+      <g clip-path="url(#skeleton-shapes)">
+        <rect class="shimmer-bar" x="0" y="80" width="150" height="240" fill="url(#shimmer-gradient)" />
+      </g>
+    </g>
+
+    <!-- ════════ LAYER 2: REAL FULLY LOADED CONTENT ════════ -->
+    <g class="content-layer" opacity="0">
+      <!-- Profile Avatar -->
+      <circle cx="58" cy="113" r="24" fill="#a78bfa" />
+      <text x="49" y="119" font-family="Inter, sans-serif" font-size="18px" fill="#ffffff">🐱</text>
+
+      <!-- Profile Text -->
+      <text class="profile-name" x="94" y="108">Jane Doe</text>
+      <text class="profile-bio" x="94" y="122">React Native Architect</text>
+
+      <!-- Main Content Image (Beautiful gradient landscape simulation) -->
+      <g transform="translate(34, 152)">
+        <rect width="182" height="110" rx="8" ry="8" fill="url(#image-gradient)" />
+        <linearGradient id="image-gradient" x1="0" y1="0" x2="182" y2="110" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#4f46e5" />
+          <stop offset="50%" stop-color="#818cf8" />
+          <stop offset="100%" stop-color="#ec4899" />
+        </linearGradient>
+        <!-- Overlay tag badge -->
+        <rect class="tag-bg" x="10" y="10" width="58" height="16" rx="4" ry="4" />
+        <text class="tag-text" x="16" y="21">FEATURED</text>
+      </g>
+
+      <!-- Description lines -->
+      <text class="profile-body-text" x="34" y="285">Building high performance layout components</text>
+      <text class="profile-body-text" x="34" y="299">with hardware acceleration.</text>
+    </g>
+  </g>
+
+  <!-- ════════════ RIGHT PANEL: FEATURES ════════════ -->
+  <g transform="translate(355, 90)">
+    <!-- Badges -->
+    <rect x="0" y="0" width="124" height="24" rx="6" ry="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1" />
+    <text class="badge-font" x="8" y="16" fill="#a5b4fc">⚡ 60FPS SHIMMER</text>
+    <rect x="134" y="0" width="112" height="24" rx="6" ry="6" fill="#1e3a2f" stroke="#059669" stroke-width="1" />
+    <text class="badge-font" x="142" y="16" fill="#6ee7b7">🤖 AUTO-LAYOUT</text>
+
+    <!-- Feature 1 -->
+    <g transform="translate(0, 50)" class="fp">
+      <circle cx="14" cy="10" r="14" fill="#1e1b4b" />
+      <text x="7" y="15" font-family="Inter, sans-serif" font-size="14px">⚡</text>
+      <text class="feature-head" x="36" y="8">GPU-Accelerated Shimmer</text>
+      <text class="feature-body" x="36" y="24">Standard native transforms for smooth 60 FPS transitions</text>
+    </g>
+
+    <!-- Feature 2 -->
+    <g transform="translate(0, 105)" class="fp" style="animation-delay: 0.5s;">
+      <circle cx="14" cy="10" r="14" fill="#0f172a" />
+      <text x="7" y="15" font-family="Inter, sans-serif" font-size="14px">🤖</text>
+      <text class="feature-head" x="36" y="8">Automatic Layout Scanning</text>
+      <text class="feature-body" x="36" y="24">Scans and clones your existing components instantly</text>
+    </g>
+
+    <!-- Feature 3 -->
+    <g transform="translate(0, 160)" class="fp" style="animation-delay: 1s;">
+      <circle cx="14" cy="10" r="14" fill="#1c1917" />
+      <text x="7" y="15" font-family="Inter, sans-serif" font-size="14px">🎨</text>
+      <text class="feature-head" x="36" y="8">Highly Customizable</text>
+      <text class="feature-body" x="36" y="24">Modify duration, colors, curves, and shading</text>
+    </g>
+
+    <!-- Feature 4 -->
+    <g transform="translate(0, 215)" class="fp" style="animation-delay: 1.5s;">
+      <circle cx="14" cy="10" r="14" fill="#064e3b" />
+      <text x="7" y="15" font-family="Inter, sans-serif" font-size="14px">📦</text>
+      <text class="feature-head" x="36" y="8">Zero Native Code</text>
+      <text class="feature-body" x="36" y="24">100% compatible with Expo Go and Bare apps</text>
+    </g>
+
+    <!-- Code snippet -->
+    <g transform="translate(0, 280)">
+      <rect fill="#0f172a" width="410" height="100" rx="10" ry="10" stroke="#1e293b" stroke-width="1" />
+      <text class="code-font" x="14" y="22" fill="#64748b">// Wrap your components with SkeletonFlow</text>
+      <text class="code-font" x="14" y="40" fill="#c084fc">import</text>
+      <text class="code-font" x="58" y="40" fill="#e2e8f0"> { SkeletonFlow } </text>
+      <text class="code-font" x="168" y="40" fill="#c084fc">from</text>
+      <text class="code-font" x="200" y="40" fill="#fbbf24">'react-native-skeleton-flow'</text>
+      <text class="code-font" x="14" y="62" fill="#e2e8f0">&lt;</text>
+      <text class="code-font" x="22" y="62" fill="#22d3ee">SkeletonFlow</text>
+      <text class="code-font" x="120" y="62" fill="#fbbf24"> loading</text>
+      <text class="code-font" x="180" y="62" fill="#e2e8f0">={isLoading}&gt;</text>
+      <text class="code-font" x="14" y="80" fill="#e2e8f0">  &lt;</text>
+      <text class="code-font" x="26" y="80" fill="#22d3ee">ProfileScreen</text>
+      <text class="code-font" x="120" y="80" fill="#e2e8f0"> /&gt;</text>
+      <text class="code-font" x="14" y="94" fill="#e2e8f0">&lt;/</text>
+      <text class="code-font" x="26" y="94" fill="#22d3ee">SkeletonFlow</text>
+      <text class="code-font" x="110" y="94" fill="#e2e8f0">&gt;</text>
+    </g>
+  </g>
+</svg>

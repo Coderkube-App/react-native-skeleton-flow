@@ -2,6 +2,12 @@
 
 A zero-dependency, high-performance, automatic layout skeleton placeholder creator for **React Native** and **Expo**. It preserves your exact layout structures and turns your text, images, and container components into beautiful, hardware-accelerated shimmering skeleton views.
 
+## 🎬 Demo
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Coderkube-App/react-native-skeleton-flow/main/assets/skeleton_flow_demo.svg" alt="Skeleton Flow Demo" width="800" />
+</p>
+
 ---
 
 ## Features
